@@ -25,10 +25,7 @@ namespace FFXIVTrainer.Models
 			set => selectedValue = value;
 		}
 
-		public bool IsEnabled
-		{
-			get => names.Count != 0;
-		}
+		public bool IsEnabled { get; set; }
 
 		public EntityList()
 		{

@@ -32,6 +32,11 @@ namespace FFXIVTrainer.ViewModels
 				var name = MemoryManager.Instance.MemLib.readString(addr);
 				EntityList.Names.Add(((i + 1) * 8), name.Substring(0, name.IndexOf('\0')));
 			}
+
+			// set the enable state
+			EntityList.IsEnabled = true;
+			if (EntityList.SelectedValue == null)
+				EntityList.SelectedValue = EntityList.Names[8];
 		}
 	}
 }
