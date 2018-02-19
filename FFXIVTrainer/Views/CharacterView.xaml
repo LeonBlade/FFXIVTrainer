@@ -28,13 +28,10 @@
 			<RowDefinition/>
 		</Grid.RowDefinitions>
 
-		<!-- Column Definitions to align controls -->
 		<Grid.ColumnDefinitions>
-
 			<ColumnDefinition Width="Auto"/>
 			<ColumnDefinition Width="Auto"/>
 			<ColumnDefinition/>
-
 		</Grid.ColumnDefinitions>
 
 		<!-- Freeze checkbox -->

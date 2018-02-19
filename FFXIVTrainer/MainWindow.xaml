@@ -3,34 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FFXIVTrainer"
-        xmlns:System="clr-namespace:System;assembly=mscorlib"
-		xmlns:tk="http://schemas.xceed.com/wpf/xaml/toolkit"
-		xmlns:fa="http://schemas.fontawesome.io/icons/"
-		xmlns:Converters="clr-namespace:FFXIVTrainer.Converters"
 		x:Class="FFXIVTrainer.MainWindow"
 		xmlns:Views="clr-namespace:FFXIVTrainer.Views"
 		xmlns:ViewModels="clr-namespace:FFXIVTrainer.ViewModels"
         mc:Ignorable="d"
 		x:Name="Window"
         Title="FFXIV Trainer" Height="486" Width="677">
-
-	<!-- DataContext set to the Character ViewModel -->
-	<Window.DataContext>
-		<ViewModels:MainWindowViewModel/>
-	</Window.DataContext>
-
 	<Grid>
-		<TabControl Margin="10,10,10,46">
-			<TabItem Header="Character">
-				<Grid>
-					<GroupBox Header="Basic" Margin="10,10,333,171" Width="300">
-						<Views:CharacterView HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" />
-					</GroupBox>
-				</Grid>
-			</TabItem>
-			<TabItem Header="????">
-			</TabItem>
-		</TabControl>
+		<ComboBox IsEnabled="{Binding Path=EntityList.IsEnabled}" ItemsSource="{Binding Path=EntityList.Names.Values}" SelectedValue="{Binding Path=EntityList.SelectedValue}" Width="200" Height="22" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+			<ComboBox.DataContext>
+				<ViewModels:EntityListViewModel/>
+			</ComboBox.DataContext>
+		</ComboBox>
+		<GroupBox Header="Basic" Margin="10,37,0,0" HorizontalAlignment="Left" Width="313" Height="200" VerticalAlignment="Top">
+			<Views:CharacterView Margin="10,10,10,10" Width="Auto" Height="Auto" />
+		</GroupBox>
+		<GroupBox Header="Bust" Margin="328,37,0,0" HorizontalAlignment="Left" Width="259" Height="200" VerticalAlignment="Top">
+			<Views:BustView Height="Auto" Width="Auto" Margin="10,10,10,10"/>
+		</GroupBox>
 	</Grid>
 </Window>

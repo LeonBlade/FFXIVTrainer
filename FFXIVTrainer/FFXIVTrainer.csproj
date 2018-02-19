@@ -70,11 +70,17 @@
     <Compile Include="Converters\EnumDescriptionTypeConverter.cs" />
     <Compile Include="Linkshell.cs" />
     <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\Bust.cs" />
+    <Compile Include="Models\EntityList.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Util\EnumBindingSourceExtension.cs" />
+    <Compile Include="ViewModels\BustViewModel.cs" />
     <Compile Include="ViewModels\CharacterViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\EntityListViewModel.cs" />
+    <Compile Include="Views\BustView.xaml.cs">
+      <DependentUpon>BustView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CharacterView.xaml.cs">
       <DependentUpon>CharacterView.xaml</DependentUpon>
     </Compile>
@@ -91,6 +97,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\BustView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CharacterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

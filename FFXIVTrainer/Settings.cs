@@ -26,7 +26,6 @@ namespace FFXIVTrainer
 		#endregion
 
 		public string AoBOffset { get; set; }
-		[XmlElement("Character")]
 		public CharacterOffsets Character { get; set; }
 
 		public Settings()
@@ -42,11 +41,27 @@ namespace FFXIVTrainer
 		public string Race { get; set; }
 		public string Gender { get; set; }
 		public string Clan { get; set; }
-		public PositionOffsets Position { get; set; }
+		public BodyOffsets Body { get; set; }
 		public string NameHeight { get; set; }
 
 		public CharacterOffsets()
 		{
+			Body = new BodyOffsets();
+		}
+	}
+
+	[Serializable]
+	public class BodyOffsets
+	{
+		[XmlAttribute("Base")]
+		public string Base { get; set; }
+
+		public PositionOffsets Position { get; set; }
+		public BustOffsets Bust { get; set; }
+
+		public BodyOffsets()
+		{
+			Bust = new BustOffsets();
 			Position = new PositionOffsets();
 		}
 	}
@@ -54,11 +69,20 @@ namespace FFXIVTrainer
 	[Serializable]
 	public class PositionOffsets
 	{
-		[XmlAttribute("Offset")]
-		public string Base { get; set; }
 		public string X { get; set; }
 		public string Y { get; set; }
 		public string Z { get; set; }
 		public string Rotation { get; set; }
+	}
+
+	[Serializable]
+	public class BustOffsets
+	{
+		[XmlAttribute("Base")]
+		public string Base { get; set; }
+
+		public string X { get; set; }
+		public string Y { get; set; }
+		public string Z { get; set; }
 	}
 }

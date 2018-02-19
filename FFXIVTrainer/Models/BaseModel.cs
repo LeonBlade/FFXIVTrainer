@@ -25,22 +25,19 @@ namespace FFXIVTrainer.Models
 		public T value { get; set; }
 		public bool freeze { get; set; }
 
-		public Address()
-		{
-
-		}
-
 		/// <summary>
 		/// Get a byte array of this address
 		/// </summary>
 		/// <returns></returns>
 		public byte[] GetBytes()
 		{
-			var bf = new BinaryFormatter();
-			using (var ms = new MemoryStream())
+			try
 			{
-				bf.Serialize(ms, value);
-				return ms.ToArray();
+				return BitConverter.GetBytes((dynamic)value);
+			}
+			catch
+			{
+				return Encoding.UTF8.GetBytes((dynamic)value);
 			}
 		}
 

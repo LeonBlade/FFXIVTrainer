@@ -6,12 +6,20 @@
 	<Race>15F0</Race>
 	<Gender>15F1</Gender>
 	<Clan>15F4</Clan>
-	<Position Base="F0">
-	  <X>50</X>
-	  <Y>54</Y>
-	  <Z>58</Z>
-	  <Rotation>64</Rotation>
-	</Position>
+	<Body Base="F0">
+	  <Position>
+		<X>50</X>
+		<Y>54</Y>
+		<Z>58</Z>
+		<Rotation>64</Rotation>
+	  </Position>
+	  <Bust Base="140">
+		<X>64</X>
+		<Y>68</Y>
+		<Z>6C</Z>
+	  </Bust>
+	  <Height>26C</Height>
+	</Body>
 	<NameHeight>164</NameHeight>
   </Character>
 </Settings>
