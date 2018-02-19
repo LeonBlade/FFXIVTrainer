@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="FFXIVTrainer.Views.CharacterView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:Models="clr-namespace:FFXIVTrainer.Models"
+			 xmlns:util="clr-namespace:FFXIVTrainer.Util"
+             xmlns:Converters="clr-namespace:FFXIVTrainer.Converters"
+			 xmlns:ViewModels="clr-namespace:FFXIVTrainer.ViewModels"
+			 mc:Ignorable="d" Height="150" Width="270">
+
+	<!-- DataContext set to the Character ViewModel -->
+	<UserControl.DataContext>
+		<ViewModels:CharacterViewModel/>
+	</UserControl.DataContext>
+
+	<!-- Resources for this View -->
+	<UserControl.Resources>
+		<Converters:EnumBooleanConverter x:Key="EnumBooleanConverter" />
+	</UserControl.Resources>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+
+		<!-- Column Definitions to align controls -->
+		<Grid.ColumnDefinitions>
+
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition/>
+
+		</Grid.ColumnDefinitions>
+
+		<!-- Freeze checkbox -->
+		<CheckBox IsChecked="{Binding Path=Character.NameFreeze}" Name="name_freeze" Margin="6" VerticalContentAlignment="Center"/>
+		<CheckBox IsChecked="{Binding Path=Character.RaceFreeze}" Name="race_freeze" Grid.Row="1" Margin="6" VerticalContentAlignment="Center"/>
+		<CheckBox IsChecked="{Binding Path=Character.ClanFreeze}" Name="clan_freeze" Grid.Row="2" Margin="6" VerticalContentAlignment="Center"/>
+		<CheckBox IsChecked="{Binding Path=Character.GenderFreeze}" Name="gender_freeze" Grid.Row="3" Margin="6" VerticalContentAlignment="Center"/>
+
+		<!-- Labels for controls -->
+		<Label Content="Name" Grid.Column="1" Margin="6"/>
+		<Label Content="Race" Grid.Row="1" Grid.Column="1" Margin="6"/>
+		<Label Content="Clan" Grid.Row="2" Grid.Column="1" Margin="6"/>
+		<Label Content="Gender" Grid.Row="3" Grid.Column="1" Margin="6"/>
+
+		<!-- The controls -->
+		<TextBox Name="name" Text="{Binding Path=Character.Name, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" VerticalContentAlignment="Center" MaxLength="32" MaxLines="1" Grid.Column="2" Margin="6,6,10,6"/>
+		<ComboBox Name="race" ItemsSource="{Binding Source={util:EnumBindingSource {x:Type Models:Character+Races}}}" SelectedValue="{Binding Path=Character.Race}" Grid.Row="1" Grid.Column="2" Margin="6,6,10,6"/>
+		<ComboBox Name="clan" ItemsSource="{Binding Source={util:EnumBindingSource {x:Type Models:Character+Clans}}}" SelectedValue="{Binding Path=Character.Clan}" Grid.Row="2" Grid.Column="2" Margin="6,6,10,6"/>
+		<StackPanel Grid.Column="2" Grid.Row="3" Orientation="Horizontal">
+			<RadioButton Name="gender_m" IsChecked="{Binding Path=Character.Gender, Converter={StaticResource ResourceKey=EnumBooleanConverter}, ConverterParameter={x:Static Models:Character+Genders.Male}}" Content="Male" VerticalContentAlignment="Center" Margin="6"/>
+			<RadioButton Name="gender_f" IsChecked="{Binding Path=Character.Gender, Converter={StaticResource ResourceKey=EnumBooleanConverter}, ConverterParameter={x:Static Models:Character+Genders.Female}}" Content="Female" VerticalContentAlignment="Center" Margin="12,6,6,6"/>
+		</StackPanel>
+	</Grid>
+
+</UserControl>

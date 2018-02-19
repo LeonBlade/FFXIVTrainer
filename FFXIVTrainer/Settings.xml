@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Settings>
+  <AoBOffset>18A8BB8</AoBOffset>
+  <Character>
+	<Name>30</Name>
+	<Race>15F0</Race>
+	<Gender>15F1</Gender>
+	<Clan>15F4</Clan>
+	<Position Base="F0">
+	  <X>50</X>
+	  <Y>54</Y>
+	  <Z>58</Z>
+	  <Rotation>64</Rotation>
+	</Position>
+	<NameHeight>164</NameHeight>
+  </Character>
+</Settings>

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFXIV-Trainer", "FFXIV-Trainer\FFXIV-Trainer.csproj", "{5B7D07CC-125A-45C3-85C2-ED128DF5BCC6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFXIVTrainer", "FFXIVTrainer\FFXIVTrainer.csproj", "{5B7D07CC-125A-45C3-85C2-ED128DF5BCC6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
