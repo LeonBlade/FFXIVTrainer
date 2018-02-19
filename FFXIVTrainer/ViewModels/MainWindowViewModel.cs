@@ -56,6 +56,9 @@ namespace FFXIVTrainer.ViewModels
 			// dispose of the task now that we got the address
 			task.Dispose();
 
+			// just gonna trigger the GC because the memory is just stupid
+			GC.Collect();
+
 			while (true)
 			{
 				// sleep for 200 ms
