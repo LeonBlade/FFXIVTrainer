@@ -1,15 +1,9 @@
 ﻿using FFXIVTrainer.Models;
-using System.ComponentModel;
-using System.Threading;
-using Memory;
-using System.Xml.Serialization;
-using System.IO;
-using System;
 using System.Text;
 
 namespace FFXIVTrainer.ViewModels
 {
-	internal class CharacterViewModel : BaseViewModel
+	public class CharacterViewModel : BaseViewModel
 	{
 		/// <summary>
 		/// The character this ViewModel is referencing.
@@ -20,28 +14,39 @@ namespace FFXIVTrainer.ViewModels
 			set => model = value;
 		}
 
+		private string eOffset = "8";
+
 		/// <summary>
 		/// Initializes a new instance of the CharacterViewModel class.
 		/// </summary>
-		public CharacterViewModel()
+		public CharacterViewModel(Mediator mediator) : base(mediator)
 		{
 			// create a new instance of the Character model
 			Character = new Character();
 
+			// listen to the work loop
+			mediator.Work += Work;
+
 			// register the worker loop for this model
-			Linkshell.Register("WORKER", Worker_DoWork);
+			//Linkshell.Register("WORKER", Work);
+			// register for when entity updates
+			//Linkshell.Register("EntityList.Updated", (BaseEventArgs args) => eOffset = ((EntityEventArgs)args).Offset);
 		}
 
 		/// <summary>
 		/// The backgroundworker work loop
 		/// </summary>
-		private void Worker_DoWork()
+		private void Work()
 		{
+			// the base address for the current entity
+			//var baseAddr = "0x" + MemoryManager.Instance.BaseAddress + "+0x" + eOffset;
+			var baseAddr = "0x7ff62baf8bC0";
+
 			// get the addresses for this loop
-			var raceAddr = MemoryManager.GetAddressString(MemoryManager.Instance.BaseAddress, "8", Settings.Instance.Character.Race);
-			var clanAddr = MemoryManager.GetAddressString(MemoryManager.Instance.BaseAddress, "8", Settings.Instance.Character.Clan);
-			var genderAddr = MemoryManager.GetAddressString(MemoryManager.Instance.BaseAddress, "8", Settings.Instance.Character.Gender);
-			var nameAddr = MemoryManager.GetAddressString(MemoryManager.Instance.BaseAddress, "8", Settings.Instance.Character.Name);
+			var raceAddr = MemoryManager.GetAddressString(baseAddr, Settings.Instance.Character.Race);
+			var clanAddr = MemoryManager.GetAddressString(baseAddr, Settings.Instance.Character.Clan);
+			var genderAddr = MemoryManager.GetAddressString(baseAddr, Settings.Instance.Character.Gender);
+			var nameAddr = MemoryManager.GetAddressString(baseAddr, Settings.Instance.Character.Name);
 
 			if (!Character.RaceFreeze)
 				Character.Race = (Character.Races)MemoryManager.Instance.MemLib.readByte(raceAddr);

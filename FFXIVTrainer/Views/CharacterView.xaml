@@ -9,11 +9,6 @@
 			 xmlns:ViewModels="clr-namespace:FFXIVTrainer.ViewModels"
 			 mc:Ignorable="d" Height="150" Width="270">
 
-	<!-- DataContext set to the Character ViewModel -->
-	<UserControl.DataContext>
-		<ViewModels:CharacterViewModel/>
-	</UserControl.DataContext>
-
 	<!-- Resources for this View -->
 	<UserControl.Resources>
 		<Converters:EnumBooleanConverter x:Key="EnumBooleanConverter" />

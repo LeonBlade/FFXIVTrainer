@@ -4,19 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		x:Class="FFXIVTrainer.MainWindow"
+		xmlns:local="clr-namespace:FFXIVTrainer"
 		xmlns:Views="clr-namespace:FFXIVTrainer.Views"
 		xmlns:ViewModels="clr-namespace:FFXIVTrainer.ViewModels"
         mc:Ignorable="d"
 		x:Name="Window"
         Title="FFXIV Trainer" Height="486" Width="677">
+	
+	<Window.DataContext>
+		<ViewModels:MainViewModel/>
+	</Window.DataContext>
+	
 	<Grid>
-		<ComboBox IsEnabled="{Binding Path=EntityList.IsEnabled, UpdateSourceTrigger=Explicit}" ItemsSource="{Binding Path=EntityList.Names.Values}" SelectedItem="{Binding Path=EntityList.SelectedValue, UpdateSourceTrigger=PropertyChanged}" Width="200" Height="22" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
-			<ComboBox.DataContext>
-				<ViewModels:EntityListViewModel/>
-			</ComboBox.DataContext>
-		</ComboBox>
+		<ComboBox IsEnabled="{Binding Path=EntityList.IsEnabled, UpdateSourceTrigger=Explicit}" ItemsSource="{Binding Path=EntityList.Names.Values}" SelectedItem="{Binding Path=EntityList.SelectedValue, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding Path=EntityList.SelectedIndex}" Width="200" Height="22" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 		<GroupBox Header="Basic" Margin="10,37,0,0" HorizontalAlignment="Left" Width="313" Height="200" VerticalAlignment="Top">
-			<Views:CharacterView Margin="10,10,10,10" Width="Auto" Height="Auto"  />
+			<Views:CharacterView DataContext="{Binding Path=Character}" Margin="10,10,10,10" Width="Auto" Height="Auto"/>
 		</GroupBox>
 		<GroupBox Header="Bust" Margin="328,37,0,0" HorizontalAlignment="Left" Width="259" Height="200" VerticalAlignment="Top">
 			<Views:BustView Height="Auto" Width="Auto" Margin="10,10,10,10"/>

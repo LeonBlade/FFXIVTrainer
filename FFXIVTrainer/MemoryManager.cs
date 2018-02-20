@@ -65,6 +65,7 @@ namespace FFXIVTrainer
 		{
 			// get the value for the AoB Search
 			long aobSearch = memLib.procs.MainModule.BaseAddress.ToInt64() + offset;
+			/*
 			// get byte array of this address
 			var bytes = BitConverter.GetBytes(aobSearch);
 			// create a string for this search
@@ -73,7 +74,8 @@ namespace FFXIVTrainer
 			foreach (var b in bytes)
 				sb.AppendFormat("{0:x2} ", b);
 			// return the string
-			return sb.ToString().TrimEnd();
+			return sb.ToString().TrimEnd();*/
+			return aobSearch.ToString("X");
 		}
 
 		/// <summary>

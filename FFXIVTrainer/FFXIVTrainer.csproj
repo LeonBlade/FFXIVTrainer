@@ -68,7 +68,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\EnumDescriptionTypeConverter.cs" />
-    <Compile Include="Linkshell.cs" />
+    <Compile Include="Mediator.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Bust.cs" />
     <Compile Include="Models\EntityList.cs" />
@@ -78,6 +78,7 @@
     <Compile Include="ViewModels\CharacterViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\EntityListViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\BustView.xaml.cs">
       <DependentUpon>BustView.xaml</DependentUpon>
     </Compile>

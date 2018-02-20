@@ -1,23 +1,33 @@
 ﻿using FFXIVTrainer.Models;
+using System.ComponentModel;
 
 namespace FFXIVTrainer.ViewModels
 {
 	public class EntityListViewModel : BaseViewModel
 	{
-		public EntityList EntityList
-		{
-			get => (EntityList)model;
-		}
+		public EntityList EntityList { get => (EntityList)model; }
 
-		public EntityListViewModel()
+		public EntityListViewModel(Mediator mediator) : base(mediator)
 		{
+			// instantiate a new model
 			model = new EntityList();
 
-			// register the worker loop
-			Linkshell.Register("WORKER", Work);
+			// respond to property changes
+			model.PropertyChanged += Model_PropertyChanged;
 		}
 
-		public void Work()
+		/// <summary>
+		/// Model property changed
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)
+		{
+			//if (e.PropertyName == "SelectedValue")
+				//Linkshell.Emit("EntityList.Changed", new Actions.EntityEventArgs(EntityList.Names[(EntityList.SelectedIndex + 1) * 8]));
+		}
+
+		public void Work(object args)
 		{
 			// get the array size
 			EntityList.Size = MemoryManager.Instance.MemLib.readLong(MemoryManager.Instance.BaseAddress + ",0x0");

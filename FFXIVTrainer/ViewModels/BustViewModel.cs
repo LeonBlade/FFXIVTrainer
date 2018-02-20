@@ -10,14 +10,12 @@ namespace FFXIVTrainer.ViewModels
 			set => model = value;
 		}
 
-		public BustViewModel()
+		public BustViewModel(Mediator mediator) : base(mediator)
 		{
 			Bust = new Bust();
-
-			Linkshell.Register("WORKER", Work);
 		}
 
-		public void Work()
+		public void Work(object args)
 		{
 			var baseAddr = MemoryManager.Instance.BaseAddress;
 			var body = Settings.Instance.Character.Body;

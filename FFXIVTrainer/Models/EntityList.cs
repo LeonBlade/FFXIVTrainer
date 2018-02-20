@@ -25,6 +25,13 @@ namespace FFXIVTrainer.Models
 			set => selectedValue = value;
 		}
 
+		private int selectedIndex;
+		public int SelectedIndex
+		{
+			get => selectedIndex;
+			set => selectedIndex = value;
+		}
+
 		public bool IsEnabled { get; set; }
 
 		public EntityList()
