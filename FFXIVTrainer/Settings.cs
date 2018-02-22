@@ -27,15 +27,10 @@ namespace FFXIVTrainer
 
 		public string AoBOffset { get; set; }
 		public CharacterOffsets Character { get; set; }
-
-		public Settings()
-		{
-			Character = new CharacterOffsets();
-		}
 	}
 
 	[Serializable]
-	public class CharacterOffsets
+	public struct CharacterOffsets
 	{
 		public string Name { get; set; }
 		public string Race { get; set; }
@@ -43,31 +38,22 @@ namespace FFXIVTrainer
 		public string Clan { get; set; }
 		public BodyOffsets Body { get; set; }
 		public string NameHeight { get; set; }
-
-		public CharacterOffsets()
-		{
-			Body = new BodyOffsets();
-		}
 	}
 
 	[Serializable]
-	public class BodyOffsets
+	public struct BodyOffsets
 	{
 		[XmlAttribute("Base")]
 		public string Base { get; set; }
 
 		public PositionOffsets Position { get; set; }
-		public BustOffsets Bust { get; set; }
-
-		public BodyOffsets()
-		{
-			Bust = new BustOffsets();
-			Position = new PositionOffsets();
-		}
+		public Vector3Offsets Bust { get; set; }
+		public string Height { get; set; }
+		public Vector3Offsets Scale { get; set; }
 	}
 
 	[Serializable]
-	public class PositionOffsets
+	public struct PositionOffsets
 	{
 		public string X { get; set; }
 		public string Y { get; set; }
@@ -76,7 +62,7 @@ namespace FFXIVTrainer
 	}
 
 	[Serializable]
-	public class BustOffsets
+	public struct Vector3Offsets
 	{
 		[XmlAttribute("Base")]
 		public string Base { get; set; }

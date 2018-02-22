@@ -9,9 +9,6 @@ namespace FFXIVTrainer.Models
 #pragma warning disable 67
 		public event PropertyChangedEventHandler PropertyChanged;
 #pragma warning restore 67
-
-
-		public string[] Settings { get; set; }
 	}
 
 	public class Address<T> : INotifyPropertyChanged

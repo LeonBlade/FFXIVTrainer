@@ -15,6 +15,14 @@ namespace FFXIVTrainer.ViewModels
 		private CharacterViewModel character;
 		private BustViewModel bust;
 		private EntityListViewModel entityList;
+		private ScaleViewModel scale;
+		private PositionViewModel position;
+
+		public EntityListViewModel EntityList	{ get => entityList;	set => entityList	= value; }
+		public CharacterViewModel Character		{ get => character;		set => character	= value; }
+		public BustViewModel Bust				{ get => bust;			set => bust			= value; }
+		public ScaleViewModel Scale				{ get => scale;			set => scale		= value; }
+		public PositionViewModel Position		{ get => position;		set => position		= value; }
 
 		public MainViewModel()
 		{
@@ -24,6 +32,26 @@ namespace FFXIVTrainer.ViewModels
 			// open the process to FFXIV
 			MemoryManager.Instance.MemLib.OpenProcess("ffxiv_dx11");
 
+			// load the settings
+			LoadSettings();
+
+			// initialize a background worker
+			worker = new BackgroundWorker();
+			worker.DoWork += Worker_DoWork;
+
+			// run the worker
+			worker.RunWorkerAsync();
+
+			// create the view model instances
+			character = new CharacterViewModel(mediator);
+			bust = new BustViewModel(mediator);
+			entityList = new EntityListViewModel(mediator);
+			scale = new ScaleViewModel(mediator);
+			position = new PositionViewModel(mediator);
+		}
+
+		private void LoadSettings()
+		{
 			// create an xml serializer
 			var serializer = new XmlSerializer(typeof(Settings), "");
 			// create namespace to remove it for the serializer
@@ -43,32 +71,12 @@ namespace FFXIVTrainer.ViewModels
 					Console.WriteLine(ex);
 				}
 			}
-
-			// initialize a background worker
-			worker = new BackgroundWorker();
-			worker.DoWork += Worker_DoWork;
-
-			// run the worker
-			worker.RunWorkerAsync();
-
-			// create new instance of the character view model
-			character = new CharacterViewModel(mediator);
 		}
 
 		private void Worker_DoWork(object sender, DoWorkEventArgs e)
 		{
 			// base address for the memory region
 			string baseAddr = MemoryManager.Instance.GetBaseAddress(int.Parse(Settings.Instance.AoBOffset, System.Globalization.NumberStyles.HexNumber));
-			// perform the scan and get the task
-			// var task = MemoryManager.Instance.MemLib.AoBScan(0, 0x7FFFFFFFFFFF, aobSearch);
-			// get the base address
-			//MemoryManager.Instance.BaseAddress = task.Result.ToString("X");
-
-			// dispose of the task now that we got the address
-			//task.Dispose();
-
-			// just gonna trigger the GC because the memory is just stupid
-			//GC.Collect();
 
 			// no fancy tricks here boi
 			MemoryManager.Instance.BaseAddress = baseAddr;
@@ -86,9 +94,5 @@ namespace FFXIVTrainer.ViewModels
 				mediator.SendWork();
 			}
 		}
-
-		public EntityListViewModel	EntityList		{ get => entityList;	set => entityList = value; }
-		public CharacterViewModel	Character		{ get => character;		set => character =	value; }
-		public BustViewModel		Bust			{ get => bust;			set => bust =		value; }
 	}
 }

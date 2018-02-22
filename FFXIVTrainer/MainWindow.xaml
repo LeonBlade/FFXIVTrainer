@@ -9,19 +9,25 @@
 		xmlns:ViewModels="clr-namespace:FFXIVTrainer.ViewModels"
         mc:Ignorable="d"
 		x:Name="Window"
-        Title="FFXIV Trainer" Height="486" Width="677">
-	
+        Title="FFXIV Trainer" Height="678" Width="610">
+
 	<Window.DataContext>
 		<ViewModels:MainViewModel/>
 	</Window.DataContext>
-	
+
 	<Grid>
-		<ComboBox IsEnabled="{Binding Path=EntityList.IsEnabled, UpdateSourceTrigger=Explicit}" ItemsSource="{Binding Path=EntityList.Names.Values}" SelectedItem="{Binding Path=EntityList.SelectedValue, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding Path=EntityList.SelectedIndex}" Width="200" Height="22" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-		<GroupBox Header="Basic" Margin="10,37,0,0" HorizontalAlignment="Left" Width="313" Height="200" VerticalAlignment="Top">
+		<Views:EntityListView DataContext="{Binding Path=EntityList}" HorizontalAlignment="Left" Height="22" Margin="10,10,0,0" VerticalAlignment="Top" Width="250"/>
+		<GroupBox Header="Basic" Margin="10,37,0,0" HorizontalAlignment="Left" Width="310" Height="200" VerticalAlignment="Top">
 			<Views:CharacterView DataContext="{Binding Path=Character}" Margin="10,10,10,10" Width="Auto" Height="Auto"/>
 		</GroupBox>
-		<GroupBox Header="Bust" Margin="328,37,0,0" HorizontalAlignment="Left" Width="259" Height="200" VerticalAlignment="Top">
-			<Views:BustView Height="Auto" Width="Auto" Margin="10,10,10,10"/>
+		<GroupBox Header="Bust" Margin="325,37,0,0" HorizontalAlignment="Left" Width="260" Height="200" VerticalAlignment="Top">
+			<Views:BustView DataContext="{Binding Path=Bust}" Height="Auto" Width="Auto" Margin="10,10,10,10"/>
+		</GroupBox>
+		<GroupBox Header="Scale" Margin="325,242,0,0" HorizontalAlignment="Left" Width="260" Height="200" VerticalAlignment="Top">
+			<Views:ScaleView DataContext="{Binding Path=Scale}" Height="Auto" Width="Auto" Margin="10,10,10,10"/>
+		</GroupBox>
+		<GroupBox Header="Position" HorizontalAlignment="Left" Height="190" Margin="325,447,0,0" VerticalAlignment="Top" Width="260">
+			<Views:PositionView DataContext="{Binding Path=Position}" Height="Auto" Margin="10" Width="Auto"/>
 		</GroupBox>
 	</Grid>
 </Window>

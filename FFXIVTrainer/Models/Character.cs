@@ -58,88 +58,18 @@ namespace FFXIVTrainer.Models
 		}
 
 		#endregion
+		
+		public Address<string> Name { get; set; }
+		public Address<Races> Race { get; set; }
+		public Address<Clans> Clan { get; set; }
+		public Address<Genders> Gender { get; set; }
 
-		#region Properties
-
-		private string name;
-		/// <summary>
-		/// Character name 32-bytes long maximum
-		/// </summary>
-		public string Name
+		public Character()
 		{
-			get => name;
-			set => name = value;
+			Name = new Address<string>();
+			Race = new Address<Races>();
+			Clan = new Address<Clans>();
+			Gender = new Address<Genders>();
 		}
-
-		private byte race;
-		/// <summary>
-		/// Character race
-		/// </summary>
-		public Races Race
-		{
-			get { return (Races)race; }
-			set { race = (byte)value; }
-		}
-
-		private byte clan;
-		/// <summary>
-		/// Character clan
-		/// </summary>
-		public Clans Clan
-		{
-			get { return (Clans)clan; }
-			set { clan = (byte)value; }
-		}
-
-		private byte gender;
-		/// <summary>
-		/// Character gender
-		/// </summary>
-		public Genders Gender
-		{
-			get { return (Genders)gender; }
-			set { gender = (byte)value; }
-		}
-
-		private Position position;
-		/// <summary>
-		/// Position of the player
-		/// </summary>
-		public Position Position
-		{
-			get => position;
-			set => position = value;
-		}
-
-		#endregion
-
-		#region Freeze States
-
-		public bool NameFreeze { get; set; }
-		public bool RaceFreeze { get; set; }
-		public bool ClanFreeze { get; set; }
-		public bool GenderFreeze { get; set; }
-		public bool PositionFreeze { get; set; }
-
-		#endregion
 	}
-
-	#region Suplementary classes for Character
-
-	/// <summary>
-	/// Position Class to hold values for character position
-	/// </summary>
-	public class Position : INotifyPropertyChanged
-	{
-		public float X { get; set; }
-		public float Y { get; set; }
-		public float Z { get; set; }
-		public float Rotation { get; set; }
-
-#pragma warning disable 67
-		public event PropertyChangedEventHandler PropertyChanged;
-#pragma warning restore 67
-	}
-
-	#endregion
 }

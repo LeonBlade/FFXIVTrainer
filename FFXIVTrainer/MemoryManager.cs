@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Text;
 using Memory;
 
@@ -63,19 +64,7 @@ namespace FFXIVTrainer
 		/// <returns></returns>
 		public string GetBaseAddress(long offset)
 		{
-			// get the value for the AoB Search
-			long aobSearch = memLib.procs.MainModule.BaseAddress.ToInt64() + offset;
-			/*
-			// get byte array of this address
-			var bytes = BitConverter.GetBytes(aobSearch);
-			// create a string for this search
-			var sb = new StringBuilder(bytes.Length * 2);
-			// loop over bytes and append to the string with hex values
-			foreach (var b in bytes)
-				sb.AppendFormat("{0:x2} ", b);
-			// return the string
-			return sb.ToString().TrimEnd();*/
-			return aobSearch.ToString("X");
+			return (memLib.procs.MainModule.BaseAddress.ToInt64() + offset).ToString("X");
 		}
 
 		/// <summary>
@@ -84,7 +73,18 @@ namespace FFXIVTrainer
 		/// <returns></returns>
 		public bool IsReady()
 		{
-			return memLib.procID != 0;
+			return memLib.procID != 0 && !memLib.procs.HasExited;
+		}
+
+		/// <summary>
+		/// Adds two hex strings together
+		/// </summary>
+		/// <param name="a"></param>
+		/// <param name="b"></param>
+		/// <returns></returns>
+		public static string Add(string a, string b)
+		{
+			return (long.Parse(a, NumberStyles.HexNumber) + long.Parse(b, NumberStyles.HexNumber)).ToString("X");
 		}
 
 		public static string GetAddressString(params string[] addr)
@@ -92,7 +92,7 @@ namespace FFXIVTrainer
 			var ret = "";
 
 			foreach (var a in addr)
-				ret += "0x" + a + ",";
+				ret += a + ",";
 
 			return ret.TrimEnd(',');
 		}

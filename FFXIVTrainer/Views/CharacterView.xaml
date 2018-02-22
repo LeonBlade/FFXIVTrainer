@@ -30,10 +30,10 @@
 		</Grid.ColumnDefinitions>
 
 		<!-- Freeze checkbox -->
-		<CheckBox IsChecked="{Binding Path=Character.NameFreeze}" Name="name_freeze" Margin="6" VerticalContentAlignment="Center"/>
-		<CheckBox IsChecked="{Binding Path=Character.RaceFreeze}" Name="race_freeze" Grid.Row="1" Margin="6" VerticalContentAlignment="Center"/>
-		<CheckBox IsChecked="{Binding Path=Character.ClanFreeze}" Name="clan_freeze" Grid.Row="2" Margin="6" VerticalContentAlignment="Center"/>
-		<CheckBox IsChecked="{Binding Path=Character.GenderFreeze}" Name="gender_freeze" Grid.Row="3" Margin="6" VerticalContentAlignment="Center"/>
+		<CheckBox IsChecked="{Binding Path=Character.Name.freeze}" Margin="6" VerticalContentAlignment="Center"/>
+		<CheckBox IsChecked="{Binding Path=Character.Race.freeze}" Grid.Row="1" Margin="6" VerticalContentAlignment="Center"/>
+		<CheckBox IsChecked="{Binding Path=Character.Clan.freeze}" Grid.Row="2" Margin="6" VerticalContentAlignment="Center"/>
+		<CheckBox IsChecked="{Binding Path=Character.Gender.freeze}" Grid.Row="3" Margin="6" VerticalContentAlignment="Center"/>
 
 		<!-- Labels for controls -->
 		<Label Content="Name" Grid.Column="1" Margin="6"/>
@@ -42,12 +42,12 @@
 		<Label Content="Gender" Grid.Row="3" Grid.Column="1" Margin="6"/>
 
 		<!-- The controls -->
-		<TextBox Name="name" Text="{Binding Path=Character.Name, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" VerticalContentAlignment="Center" MaxLength="32" MaxLines="1" Grid.Column="2" Margin="6,6,10,6"/>
-		<ComboBox Name="race" ItemsSource="{Binding Source={util:EnumBindingSource {x:Type Models:Character+Races}}}" SelectedValue="{Binding Path=Character.Race}" Grid.Row="1" Grid.Column="2" Margin="6,6,10,6"/>
-		<ComboBox Name="clan" ItemsSource="{Binding Source={util:EnumBindingSource {x:Type Models:Character+Clans}}}" SelectedValue="{Binding Path=Character.Clan}" Grid.Row="2" Grid.Column="2" Margin="6,6,10,6"/>
+		<TextBox Text="{Binding Path=Character.Name.value, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" VerticalContentAlignment="Center" MaxLength="32" MaxLines="1" Grid.Column="2" Margin="6,6,10,6"/>
+		<ComboBox ItemsSource="{Binding Source={util:EnumBindingSource {x:Type Models:Character+Races}}}" SelectedValue="{Binding Path=Character.Race.value}" Grid.Row="1" Grid.Column="2" Margin="6,6,10,6"/>
+		<ComboBox ItemsSource="{Binding Source={util:EnumBindingSource {x:Type Models:Character+Clans}}}" SelectedValue="{Binding Path=Character.Clan.value}" Grid.Row="2" Grid.Column="2" Margin="6,6,10,6"/>
 		<StackPanel Grid.Column="2" Grid.Row="3" Orientation="Horizontal">
-			<RadioButton Name="gender_m" IsChecked="{Binding Path=Character.Gender, Converter={StaticResource ResourceKey=EnumBooleanConverter}, ConverterParameter={x:Static Models:Character+Genders.Male}}" Content="Male" VerticalContentAlignment="Center" Margin="6"/>
-			<RadioButton Name="gender_f" IsChecked="{Binding Path=Character.Gender, Converter={StaticResource ResourceKey=EnumBooleanConverter}, ConverterParameter={x:Static Models:Character+Genders.Female}}" Content="Female" VerticalContentAlignment="Center" Margin="12,6,6,6"/>
+			<RadioButton IsChecked="{Binding Path=Character.Gender.value, Converter={StaticResource ResourceKey=EnumBooleanConverter}, ConverterParameter={x:Static Models:Character+Genders.Male}}" Content="Male" VerticalContentAlignment="Center" Margin="6"/>
+			<RadioButton IsChecked="{Binding Path=Character.Gender.value, Converter={StaticResource ResourceKey=EnumBooleanConverter}, ConverterParameter={x:Static Models:Character+Genders.Female}}" Content="Female" VerticalContentAlignment="Center" Margin="12,6,6,6"/>
 		</StackPanel>
 	</Grid>
 

@@ -5,7 +5,7 @@ namespace FFXIVTrainer.ViewModels
 	public class BaseViewModel
 	{
 		protected BaseModel model;
-		private Mediator mediator;
+		protected Mediator mediator;
 
 		public BaseViewModel(Mediator mediator)
 		{

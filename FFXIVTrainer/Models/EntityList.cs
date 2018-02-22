@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 
 namespace FFXIVTrainer.Models
 {
@@ -11,8 +11,8 @@ namespace FFXIVTrainer.Models
 			set => size = value;
 		}
 
-		private Dictionary<int, string> names;
-		public Dictionary<int, string> Names
+		private ObservableCollection<string> names;
+		public ObservableCollection<string> Names
 		{
 			get => names;
 			set => names = value;
@@ -36,7 +36,7 @@ namespace FFXIVTrainer.Models
 
 		public EntityList()
 		{
-			names = new Dictionary<int, string>();
+			names = new ObservableCollection<string>();
 		}
 	}
 }

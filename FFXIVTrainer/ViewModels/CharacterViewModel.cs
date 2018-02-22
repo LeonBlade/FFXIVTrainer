@@ -1,4 +1,5 @@
 ﻿using FFXIVTrainer.Models;
+using System;
 using System.Text;
 
 namespace FFXIVTrainer.ViewModels
@@ -27,10 +28,8 @@ namespace FFXIVTrainer.ViewModels
 			// listen to the work loop
 			mediator.Work += Work;
 
-			// register the worker loop for this model
-			//Linkshell.Register("WORKER", Work);
-			// register for when entity updates
-			//Linkshell.Register("EntityList.Updated", (BaseEventArgs args) => eOffset = ((EntityEventArgs)args).Offset);
+			// listen to entity selection changes
+			mediator.EntitySelection += (offset) => eOffset = offset;
 		}
 
 		/// <summary>
@@ -38,35 +37,52 @@ namespace FFXIVTrainer.ViewModels
 		/// </summary>
 		private void Work()
 		{
-			// the base address for the current entity
-			//var baseAddr = "0x" + MemoryManager.Instance.BaseAddress + "+0x" + eOffset;
-			var baseAddr = "0x7ff62baf8bC0";
+			try
+			{
+				// the base address for the current entity
+				var baseAddr = MemoryManager.Add(MemoryManager.Instance.BaseAddress, eOffset);
 
-			// get the addresses for this loop
-			var raceAddr = MemoryManager.GetAddressString(baseAddr, Settings.Instance.Character.Race);
-			var clanAddr = MemoryManager.GetAddressString(baseAddr, Settings.Instance.Character.Clan);
-			var genderAddr = MemoryManager.GetAddressString(baseAddr, Settings.Instance.Character.Gender);
-			var nameAddr = MemoryManager.GetAddressString(baseAddr, Settings.Instance.Character.Name);
+				// get the addresses for this loop
+				var raceAddr = MemoryManager.GetAddressString(baseAddr, Settings.Instance.Character.Race);
+				var clanAddr = MemoryManager.GetAddressString(baseAddr, Settings.Instance.Character.Clan);
+				var genderAddr = MemoryManager.GetAddressString(baseAddr, Settings.Instance.Character.Gender);
+				var nameAddr = MemoryManager.GetAddressString(baseAddr, Settings.Instance.Character.Name);
 
-			if (!Character.RaceFreeze)
-				Character.Race = (Character.Races)MemoryManager.Instance.MemLib.readByte(raceAddr);
-			else
-				MemoryManager.Instance.MemLib.writeBytes(raceAddr, new byte[] { (byte)Character.Race });
+				if (!Character.Race.freeze)
+					Character.Race.value = (Character.Races)MemoryManager.Instance.MemLib.readByte(raceAddr);
+				else
+					MemoryManager.Instance.MemLib.writeBytes(raceAddr, Character.Race.GetBytes());
 
-			if (!Character.ClanFreeze)
-				Character.Clan = (Character.Clans)MemoryManager.Instance.MemLib.readByte(clanAddr);
-			else
-				MemoryManager.Instance.MemLib.writeBytes(clanAddr, new byte[] { (byte)Character.Clan });
+				if (!Character.Clan.freeze)
+					Character.Clan.value = (Character.Clans)MemoryManager.Instance.MemLib.readByte(clanAddr);
+				else
+					MemoryManager.Instance.MemLib.writeBytes(clanAddr, Character.Clan.GetBytes());
 
-			if (!Character.GenderFreeze)
-				Character.Gender = (Character.Genders)MemoryManager.Instance.MemLib.readByte(genderAddr);
-			else
-				MemoryManager.Instance.MemLib.writeBytes(genderAddr, new byte[] { (byte)Character.Gender });
+				if (!Character.Gender.freeze)
+					Character.Gender.value = (Character.Genders)MemoryManager.Instance.MemLib.readByte(genderAddr);
+				else
+					MemoryManager.Instance.MemLib.writeBytes(genderAddr, Character.Gender.GetBytes());
 
-			if (!Character.NameFreeze)
-				Character.Name = MemoryManager.Instance.MemLib.readString(nameAddr).Trim('\0');
-			else
-				MemoryManager.Instance.MemLib.writeBytes(nameAddr, Encoding.UTF8.GetBytes(Character.Name + '\0'));
+				if (!Character.Name.freeze)
+				{
+					var name = MemoryManager.Instance.MemLib.readString(nameAddr);
+
+					if (name.IndexOf('\0') != -1)
+						name = name.Substring(0, name.IndexOf('\0'));
+					Character.Name.value = name;
+				}
+				else
+				{
+					Character.Name.value += '\0';
+					MemoryManager.Instance.MemLib.writeBytes(nameAddr, Character.Name.GetBytes());
+				}
+			}
+			catch (Exception ex)
+			{
+				System.Windows.MessageBox.Show(ex.Message, "Oh no!");
+				System.Windows.MessageBox.Show("Disabling " + this.GetType().Name, "Oh no!");
+				mediator.Work -= Work;
+			}
 		}
 	}
 }

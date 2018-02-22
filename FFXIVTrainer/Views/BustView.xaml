@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:ViewModels="clr-namespace:FFXIVTrainer.ViewModels"
+             xmlns:Xceed="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" Height="160" Width="215">
 	<Grid>
 		<Grid Margin="0,0,0,35">
@@ -21,7 +21,7 @@
 				<ColumnDefinition/>
 			</Grid.ColumnDefinitions>
 
-			<CheckBox IsChecked="{Binding Path=Bust.BustX.freeze, UpdateSourceTrigger=PropertyChanged}" Margin="6" VerticalContentAlignment="Center"/>
+			<CheckBox IsChecked="{Binding Path=Bust.BustX.freeze, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="6" VerticalContentAlignment="Center"/>
 			<CheckBox IsChecked="{Binding Path=Bust.BustY.freeze, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Margin="6" VerticalContentAlignment="Center"/>
 			<CheckBox IsChecked="{Binding Path=Bust.BustZ.freeze, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Margin="6" VerticalContentAlignment="Center"/>
 
@@ -40,9 +40,9 @@
 				<ColumnDefinition Width="33*"/>
 				<ColumnDefinition Width="33*"/>
 			</Grid.ColumnDefinitions>
-			<TextBox IsEnabled="{Binding Path=Bust.BustX.freeze}" Text="{Binding Path=Bust.BustX.value}" TextWrapping="Wrap" VerticalContentAlignment="Center" Margin="6"/>
-			<TextBox IsEnabled="{Binding Path=Bust.BustY.freeze}" Text="{Binding Path=Bust.BustY.value}" TextWrapping="Wrap" VerticalContentAlignment="Center" Grid.Column="1" Margin="6"/>
-			<TextBox IsEnabled="{Binding Path=Bust.BustZ.freeze}" Text="{Binding Path=Bust.BustZ.value}" TextWrapping="Wrap" VerticalContentAlignment="Center" Grid.Column="2" Margin="6"/>
+			<Xceed:DecimalUpDown IsEnabled="{Binding Path=Bust.BustX.freeze}" Text="{Binding Path=Bust.BustX.value, UpdateSourceTrigger=PropertyChanged}" FormatString="N3" Increment="0.1" Margin="6"/>
+			<Xceed:DecimalUpDown IsEnabled="{Binding Path=Bust.BustY.freeze}" Text="{Binding Path=Bust.BustY.value, UpdateSourceTrigger=PropertyChanged}" FormatString="N3" Increment="0.1" Grid.Column="1" Margin="6"/>
+			<Xceed:DecimalUpDown IsEnabled="{Binding Path=Bust.BustZ.freeze}" Text="{Binding Path=Bust.BustZ.value, UpdateSourceTrigger=PropertyChanged}" FormatString="N3" Increment="0.1" Grid.Column="2" Margin="6"/>
 		</Grid>
 	</Grid>
 </UserControl>

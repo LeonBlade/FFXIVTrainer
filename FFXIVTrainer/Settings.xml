@@ -13,13 +13,21 @@
 		<Z>58</Z>
 		<Rotation>64</Rotation>
 	  </Position>
+	  <Scale>
+		<X>70</X>
+		<Y>78</Y>
+		<Z>74</Z>
+	  </Scale>
 	  <Bust Base="140">
 		<X>64</X>
 		<Y>68</Y>
 		<Z>6C</Z>
 	  </Bust>
 	  <Height>26C</Height>
+	  <MuscleTone>240,28,20,C</MuscleTone>
+	  <TailSize>140,70</TailSize>
 	</Body>
 	<NameHeight>164</NameHeight>
+	<TailType>15F6</TailType>
   </Character>
 </Settings>
