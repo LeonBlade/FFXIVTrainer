@@ -3,11 +3,62 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:FFXIVTrainer.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" Width="230">
-    <Grid>
-		<CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="22,22,0,0" VerticalAlignment="Top"/>
+             xmlns:Xceed="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" Width="309.279" Height="354.661">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
 
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+
+		<CheckBox IsChecked="{Binding Path=CharacterDetails.Height.freeze}" Margin="6" VerticalContentAlignment="Center"/>
+		<Label Content="Height" Grid.Column="1" Margin="6" VerticalContentAlignment="Center"/>
+		<Xceed:DecimalUpDown IsEnabled="{Binding Path=CharacterDetails.Height.freeze}" Value="{Binding Path=CharacterDetails.Height.value, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Margin="6" VerticalContentAlignment="Center"/>
+
+		<CheckBox IsChecked="{Binding Path=CharacterDetails.Muscle.freeze}" Grid.Row="1" Margin="6" VerticalContentAlignment="Center"/>
+		<Label Content="Muscle" Grid.Column="1" Grid.Row="1" Margin="6" VerticalContentAlignment="Center"/>
+		<Slider Value="{Binding Path=CharacterDetails.Muscle.value, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Path=CharacterDetails.Muscle.freeze}" Maximum="3" TickFrequency="0.5" TickPlacement="Both" Grid.Column="2" Grid.Row="1" Margin="6" VerticalContentAlignment="Center"/>
+
+		<CheckBox IsChecked="{Binding Path=CharacterDetails.TailSize.freeze}" Grid.Row="2" Margin="6" VerticalContentAlignment="Center"/>
+		<Label Content="Tail Size" Grid.Column="1" Grid.Row="2" Margin="6" VerticalContentAlignment="Center"/>
+		<Xceed:DecimalUpDown Value="{Binding Path=CharacterDetails.TailSize.value, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Path=CharacterDetails.TailSize.freeze}" Grid.Column="2" Grid.Row="2" Margin="6" VerticalContentAlignment="Center"/>
+
+		<CheckBox IsChecked="{Binding Path=CharacterDetails.TailType.freeze}" Grid.Row="3" Margin="6" VerticalContentAlignment="Center"/>
+		<Label Content="Tail Type" Grid.Column="1" Grid.Row="3" Margin="6" VerticalContentAlignment="Center"/>
+		<TextBox Text="{Binding Path=CharacterDetails.TailType.value, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Path=CharacterDetails.TailType.freeze}" TextWrapping="Wrap" VerticalContentAlignment="Center" Grid.Column="2" Grid.Row="3" Margin="6"/>
+
+		<CheckBox IsChecked="{Binding Path=CharacterDetails.Head.freeze}" Grid.Row="4" Margin="6" VerticalContentAlignment="Center"/>
+		<Label Content="Head" Grid.Column="1" Grid.Row="4" Margin="6" VerticalContentAlignment="Center"/>
+		<TextBox Text="{Binding Path=CharacterDetails.Head.value, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Path=CharacterDetails.Head.freeze}" TextWrapping="Wrap" VerticalContentAlignment="Center" Grid.Column="2" Grid.Row="4" Margin="6"/>
+
+		<CheckBox IsChecked="{Binding Path=CharacterDetails.Hair.freeze}" Grid.Row="5" Margin="6" VerticalContentAlignment="Center"/>
+		<Label Content="Hair" Grid.Column="1" Grid.Row="5" Margin="6" VerticalContentAlignment="Center"/>
+		<TextBox Text="{Binding Path=CharacterDetails.Hair.value, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Path=CharacterDetails.Hair.freeze}" TextWrapping="Wrap" VerticalContentAlignment="Center" Grid.Column="2" Grid.Row="5" Margin="6"/>
+
+		<CheckBox IsChecked="{Binding Path=CharacterDetails.Eyes.freeze}" Grid.Row="6" Margin="6" VerticalContentAlignment="Center"/>
+		<Label Content="Eyes" Grid.Column="1" Grid.Row="6" Margin="6" VerticalContentAlignment="Center"/>
+		<TextBox Text="{Binding Path=CharacterDetails.Eyes.value, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Path=CharacterDetails.Eyes.freeze}" TextWrapping="Wrap" VerticalContentAlignment="Center" Grid.Column="2" Grid.Row="6" Margin="6"/>
+
+		<CheckBox IsChecked="{Binding Path=CharacterDetails.Nose.freeze}" Grid.Row="7" Margin="6" VerticalContentAlignment="Center"/>
+		<Label Content="Nose" Grid.Column="1" Grid.Row="7" Margin="6" VerticalContentAlignment="Center"/>
+		<TextBox Text="{Binding Path=CharacterDetails.Nose.value, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Path=CharacterDetails.Nose.freeze}" TextWrapping="Wrap" VerticalContentAlignment="Center" Grid.Column="2" Grid.Row="7" Margin="6"/>
+
+		<CheckBox IsChecked="{Binding Path=CharacterDetails.Lips.freeze}" Grid.Row="8" Margin="6" VerticalContentAlignment="Center"/>
+		<Label Content="Lips" Grid.Row="8" VerticalContentAlignment="Center" RenderTransformOrigin="0.621,0.546" Grid.Column="1" Margin="6"/>
+		<TextBox Text="{Binding Path=CharacterDetails.Lips.value, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Path=CharacterDetails.Lips.freeze}" TextWrapping="Wrap" VerticalContentAlignment="Center" Grid.Column="2" Grid.Row="8" Margin="6"/>
 	</Grid>
 </UserControl>

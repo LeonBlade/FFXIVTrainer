@@ -89,16 +89,21 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\RefreshEntitiesCommand.cs" />
+    <Compile Include="Controls\Color.xaml.cs">
+      <DependentUpon>Color.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\EnumDescriptionTypeConverter.cs" />
     <Compile Include="Mediator.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Bust.cs" />
+    <Compile Include="Models\CharacterDetails.cs" />
     <Compile Include="Models\EntityList.cs" />
     <Compile Include="Models\Position.cs" />
     <Compile Include="Models\Scale.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Util\EnumBindingSourceExtension.cs" />
     <Compile Include="ViewModels\BustViewModel.cs" />
+    <Compile Include="ViewModels\CharacterDetailsViewModel.cs" />
     <Compile Include="ViewModels\CharacterViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\EntityListViewModel.cs" />
@@ -107,6 +112,9 @@
     <Compile Include="ViewModels\ScaleViewModel.cs" />
     <Compile Include="Views\CharacterDetailsView.xaml.cs">
       <DependentUpon>CharacterDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Colors.xaml.cs">
+      <DependentUpon>Colors.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PositionView.xaml.cs">
       <DependentUpon>PositionView.xaml</DependentUpon>
@@ -123,6 +131,10 @@
     <Compile Include="Views\EntityListView.xaml.cs">
       <DependentUpon>EntityListView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\Color.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -137,6 +149,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\CharacterDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Colors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

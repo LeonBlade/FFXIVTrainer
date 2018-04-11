@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
 namespace FFXIVTrainer.Models
@@ -23,14 +25,12 @@ namespace FFXIVTrainer.Models
 		/// <returns></returns>
 		public byte[] GetBytes()
 		{
-			try
-			{
-				return BitConverter.GetBytes((dynamic)value);
-			}
-			catch
-			{
+			var type = typeof(T);
+			if (type == typeof(byte) || type.IsEnum)
+				return new byte[] { Convert.ToByte(value) };
+			else if (type == typeof(string))
 				return Encoding.UTF8.GetBytes((dynamic)value);
-			}
+			return BitConverter.GetBytes((dynamic)value);
 		}
 
 #pragma warning disable 67

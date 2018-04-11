@@ -17,12 +17,14 @@ namespace FFXIVTrainer.ViewModels
 		private EntityListViewModel entityList;
 		private ScaleViewModel scale;
 		private PositionViewModel position;
+		private CharacterDetailsViewModel characterDetails;
 
-		public EntityListViewModel EntityList	{ get => entityList;	set => entityList	= value; }
-		public CharacterViewModel Character		{ get => character;		set => character	= value; }
-		public BustViewModel Bust				{ get => bust;			set => bust			= value; }
-		public ScaleViewModel Scale				{ get => scale;			set => scale		= value; }
-		public PositionViewModel Position		{ get => position;		set => position		= value; }
+		public EntityListViewModel EntityList				{ get => entityList;		set => entityList			= value; }
+		public CharacterViewModel Character					{ get => character;			set => character			= value; }
+		public BustViewModel Bust							{ get => bust;				set => bust					= value; }
+		public ScaleViewModel Scale							{ get => scale;				set => scale				= value; }
+		public PositionViewModel Position					{ get => position;			set => position				= value; }
+		public CharacterDetailsViewModel CharacterDetails	{ get => characterDetails;	set => characterDetails		= value;  }
 
 		public MainViewModel()
 		{
@@ -48,6 +50,7 @@ namespace FFXIVTrainer.ViewModels
 			entityList = new EntityListViewModel(mediator);
 			scale = new ScaleViewModel(mediator);
 			position = new PositionViewModel(mediator);
+			characterDetails = new CharacterDetailsViewModel(mediator);
 		}
 
 		private void LoadSettings()

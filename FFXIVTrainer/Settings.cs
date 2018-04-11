@@ -38,6 +38,14 @@ namespace FFXIVTrainer
 		public string Clan { get; set; }
 		public BodyOffsets Body { get; set; }
 		public string NameHeight { get; set; }
+		public string TailType { get; set; }
+		public string Head { get; set; }
+		public string Hair { get; set; }
+		public string Eyes { get; set; }
+		public string Nose { get; set; }
+		public string Lips { get; set; }
+		public string FacePaint { get; set; }
+		public string FaceFeatures { get; set; }
 	}
 
 	[Serializable]
@@ -50,6 +58,8 @@ namespace FFXIVTrainer
 		public Vector3Offsets Bust { get; set; }
 		public string Height { get; set; }
 		public Vector3Offsets Scale { get; set; }
+		public string MuscleTone { get; set; }
+		public string TailSize { get; set; }
 	}
 
 	[Serializable]

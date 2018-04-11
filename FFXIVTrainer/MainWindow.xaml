@@ -9,7 +9,7 @@
 		xmlns:ViewModels="clr-namespace:FFXIVTrainer.ViewModels"
         mc:Ignorable="d"
 		x:Name="Window"
-        Title="FFXIV Trainer" Height="678" Width="610">
+        Title="FFXIV Trainer" Height="726" Width="632">
 
 	<Window.DataContext>
 		<ViewModels:MainViewModel/>
@@ -17,17 +17,31 @@
 
 	<Grid>
 		<Views:EntityListView DataContext="{Binding Path=EntityList}" HorizontalAlignment="Left" Height="22" Margin="10,10,0,0" VerticalAlignment="Top" Width="250"/>
-		<GroupBox Header="Basic" Margin="10,37,0,0" HorizontalAlignment="Left" Width="310" Height="200" VerticalAlignment="Top">
-			<Views:CharacterView DataContext="{Binding Path=Character}" Margin="10,10,10,10" Width="Auto" Height="Auto"/>
-		</GroupBox>
-		<GroupBox Header="Bust" Margin="325,37,0,0" HorizontalAlignment="Left" Width="260" Height="200" VerticalAlignment="Top">
-			<Views:BustView DataContext="{Binding Path=Bust}" Height="Auto" Width="Auto" Margin="10,10,10,10"/>
-		</GroupBox>
-		<GroupBox Header="Scale" Margin="325,242,0,0" HorizontalAlignment="Left" Width="260" Height="200" VerticalAlignment="Top">
-			<Views:ScaleView DataContext="{Binding Path=Scale}" Height="Auto" Width="Auto" Margin="10,10,10,10"/>
-		</GroupBox>
-		<GroupBox Header="Position" HorizontalAlignment="Left" Height="190" Margin="325,447,0,0" VerticalAlignment="Top" Width="260">
-			<Views:PositionView DataContext="{Binding Path=Position}" Height="Auto" Margin="10" Width="Auto"/>
-		</GroupBox>
+		<TabControl Margin="10,37,10,10">
+			<TabItem Header="Character">
+				<Grid>
+					<GroupBox Header="Basic" Margin="10,10,0,0" HorizontalAlignment="Left" Width="310" Height="200" VerticalAlignment="Top">
+						<Views:CharacterView DataContext="{Binding Path=Character}" Margin="10,10,10,10" Width="Auto" Height="Auto"/>
+					</GroupBox>
+					<GroupBox Header="Bust" Margin="325,10,0,0" HorizontalAlignment="Left" Width="260" Height="200" VerticalAlignment="Top">
+						<Views:BustView DataContext="{Binding Path=Bust}" Height="Auto" Width="Auto" Margin="10,10,10,10"/>
+					</GroupBox>
+					<GroupBox Header="Scale" Margin="325,215,0,0" HorizontalAlignment="Left" Width="260" Height="200" VerticalAlignment="Top">
+						<Views:ScaleView DataContext="{Binding Path=Scale}" Height="Auto" Width="Auto" Margin="10,10,10,10"/>
+					</GroupBox>
+					<GroupBox Header="Position" HorizontalAlignment="Left" Height="190" Margin="325,420,0,0" VerticalAlignment="Top" Width="260">
+						<Views:PositionView DataContext="{Binding Path=Position}" Height="Auto" Margin="10" Width="Auto"/>
+					</GroupBox>
+					<GroupBox Header="Details" HorizontalAlignment="Left" Height="395" Margin="10,215,0,0" VerticalAlignment="Top" Width="310">
+						<Views:CharacterDetailsView DataContext="{Binding Path=CharacterDetails}" Height="Auto" Margin="10" Width="Auto"/>
+					</GroupBox>
+				</Grid>
+			</TabItem>
+			<TabItem Header="Equipment">
+				<Grid>
+					<Views:Colors HorizontalAlignment="Left" Height="364" Margin="71,53,0,0" VerticalAlignment="Top" Width="345"/>
+				</Grid>
+			</TabItem>
+		</TabControl>
 	</Grid>
 </Window>

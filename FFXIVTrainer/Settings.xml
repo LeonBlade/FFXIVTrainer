@@ -1,33 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Settings>
+  
   <AoBOffset>18A8BB8</AoBOffset>
+  
   <Character>
+	
 	<Name>30</Name>
 	<Race>15F0</Race>
 	<Gender>15F1</Gender>
 	<Clan>15F4</Clan>
+	
 	<Body Base="F0">
+	  
 	  <Position>
 		<X>50</X>
 		<Y>54</Y>
 		<Z>58</Z>
 		<Rotation>64</Rotation>
 	  </Position>
+	  
 	  <Scale>
 		<X>70</X>
 		<Y>78</Y>
 		<Z>74</Z>
 	  </Scale>
+	  
 	  <Bust Base="140">
 		<X>64</X>
 		<Y>68</Y>
 		<Z>6C</Z>
 	  </Bust>
+	  
 	  <Height>26C</Height>
 	  <MuscleTone>240,28,20,C</MuscleTone>
 	  <TailSize>140,70</TailSize>
 	</Body>
+	
 	<NameHeight>164</NameHeight>
-	<TailType>15F6</TailType>
+	<TailType>15FE</TailType>
+	<Head>15F5</Head>
+	<Hair>15F6</Hair>
+	<Tattoos>15FC</Tattoos>
+	<FacePaint>1601</FacePaint>
+	<Nose>1601</Nose>
+	<Lips>15FD</Lips>
+	
   </Character>
+  
 </Settings>
