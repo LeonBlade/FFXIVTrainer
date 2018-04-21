@@ -42,13 +42,13 @@ namespace FFXIVTrainer.ViewModels
 
 				// set get values
 				if (CharacterDetails.Height.freeze) mem.writeBytes(height, CharacterDetails.Height.GetBytes());
-				else CharacterDetails.Height.value = mem.readFloat(height, 4);
+				else CharacterDetails.Height.value = mem.readFloat(height);
 
 				if (CharacterDetails.Muscle.freeze) mem.writeBytes(muscle, CharacterDetails.Muscle.GetBytes());
-				else CharacterDetails.Muscle.value = mem.readFloat(muscle, 2);
+				else CharacterDetails.Muscle.value = mem.readFloat(muscle);
 
 				if (CharacterDetails.TailSize.freeze) mem.writeBytes(tailSize, CharacterDetails.TailSize.GetBytes());
-				else CharacterDetails.TailSize.value = mem.readFloat(tailSize, 4);
+				else CharacterDetails.TailSize.value = mem.readFloat(tailSize);
 
 				if (CharacterDetails.TailType.freeze) mem.writeBytes(tailType, CharacterDetails.TailType.GetBytes());
 				else CharacterDetails.TailType.value = (byte)mem.readByte(tailType);

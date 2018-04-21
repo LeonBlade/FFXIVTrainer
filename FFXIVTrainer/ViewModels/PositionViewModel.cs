@@ -13,7 +13,7 @@ namespace FFXIVTrainer.ViewModels
 			model = new Position();
 
 			mediator.Work += Work;
-			mediator.EntitySelection += offset => eOffset = offset;;
+			mediator.EntitySelection += offset => eOffset = offset;
 		}
 
 		private void Work()
@@ -48,7 +48,7 @@ namespace FFXIVTrainer.ViewModels
 				if (Position.Rotation.freeze)
 					mem.writeBytes(rotation, Position.Rotation.GetBytes());
 				else
-					Position.Rotation.value = mem.readFloat(rotation, 9);
+					Position.Rotation.value = mem.readFloat(rotation);
 			}
 			catch (System.Exception ex)
 			{
